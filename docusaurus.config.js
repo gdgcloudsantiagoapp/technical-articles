@@ -8,7 +8,10 @@ module.exports = {
   organizationName: "cloud-docs",
   projectName: "cloud-docs.github.io",
   themeConfig: {
-    sidebarCollapsible: false,
+    googleAnalytics: {
+      trackingID: 'UA-179564597-1',
+    },
+    sidebarCollapsible: true,
     navbar: {
       title: 'GDG Cloud Santiago',
       logo: {
@@ -23,7 +26,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/gdgcloudsantiagoapp/technical-articles',
           label: 'GitHub',
           position: 'right',
         },

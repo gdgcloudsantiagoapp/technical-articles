@@ -1,0 +1,139 @@
+---
+id: "entendiendo-la-capa-gratuita-de-gcp-bigquery"
+title: "Bigquery"
+description: "Serie de artículos que te ayudará a sacar el máximo provecho a Google Cloud sin pagar de más, en esta ocasión veremos BigQuery"
+keywords:
+  - Google Cloud Platform
+  - Gcp
+  - Cloud
+  - Economy
+  - Billing
+  - BigQuery
+image: "./portada.jpeg"
+---
+import {Writter} from '@site/src/utils.js';
+
+<Writter 
+  Photo="https://miro.medium.com/fit/c/256/256/2*XKiHV-3_LJvO6xeiGKheDQ.png" 
+  Name="Felipe Velasquez Castro"
+  Position="Google Developer Expert"
+/>
+
+
+Serie de artículos que te ayudará a sacar el máximo provecho a Google Cloud sin pagar de más, en esta ocasión veremos BigQuery
+
+![](https://cdn-images-1.medium.com/max/3960/0*p5zjgstrco-46tff.jpg)
+
+Otra de las Joyas de la corona de Google Cloud es Bigquery, esta es una de las bases de datos que más cariño le ha puesto Google y el hacerlo le ha ganado una gran aceptación por parte de los usuarios, llevándola a estar entre los lideres del [**Cuadro de Gartner](https://cloud.google.com/gartner-magic-quadrant-for-dmsa/)** como la mejor Base de Datos de Analítica y Business Inteligence.
+
+Esta Base de Datos es el estado del arte para Google en lo que respecta a procesamiento distribuido de Millones de datos o PB de datos en solo segundos. Logrado gracias a que procesa los datos de forma distribuida, por medio de miles de workers que realizan el análisis de pedacitos de tus datos, hasta lograr finalmente el resultado de tus queries sobre grandes volúmenes de datos en un instante.
+
+Si quieres conocerla mejor acá te dejo un link a la [descripción oficial](https://cloud.google.com/bigquery/), de seguro vas a amar esta Base de Datos.
+
+En este articulo veremos 2 aspectos muy importantes de Bigquery en nuestra misión de optimizar la gestión de los costos de Google Cloud y en especial en sacar el máximo provecho a la capa gratuita de GCP.
+
+* **Entendamos la capa gratuita de Bigquery.**
+
+* **Performance y Optimización en el uso para reducir los costos.**
+
+## Entendamos la capa gratuita de Bigquery
+
+Hasta aquí todo bien con Bigquery, pero hablemos de dinero, veamos qué nos ofrece GCP para esta Base de Datos en su capa gratuita.
+
+![](https://cdn-images-1.medium.com/max/2932/0*S3-RIGexKetuf_GL.png)
+
+Como vemos los primeros **10 GB** de almacenamiento de cada mes son gratuitos, esto es bastante, ahora bien recuerda que Bigquery también cobra por los GB que debes mover para hacer cada consulta, para ello la capa gratuita nos da **1 TB** en queries sin costo. Y cómo vemos en la tabla hay algunos conceptos asociados a ML (Machine Learning) que también tenemos gratis.
+
+Cabe destacar que estos límites se desglosan de la siguiente manera:
+
+* las sentencias de tipo **SELECT** y **PREDICT** cuentan con **1 TB** gratis.
+
+* Las sentencias **CREATE** **MODEL** cuenta con **10 GB** gratis.
+
+## Bigquery Sandbox
+
+![](https://cdn-images-1.medium.com/max/2000/0*UL7144AfTwXWI82j.png)
+
+Como regalo por parte de Google tenemos [**Bigquery Sandbox](https://cloud.google.com/bigquery/docs/sandbox)**, que es la posibilidad de contar con esta misma capa gratuita pero en proyectos sin la necesidad de estar asociados a una tarjeta de crédito o cuenta de billing.
+
+![](https://cdn-images-1.medium.com/max/2272/0*aucdsF3P2rY4Sv3U.png)
+
+Va en tu creatividad el como utilices los múltiples proyectos que puedas crear usando Sandbox. *Como principal diferencia con la capa gratuita Bigquery Sandbox almacena los datos por 60 días luego de esto los elimina*. Más abajo algunos tips para afrontar esta limitación.
+
+## Costos
+
+Entremos en detalle en la forma en la que Bigquery [cobra por el uso de este servicio](https://cloud.google.com/bigquery/pricing).
+
+### Costos de Almacenamiento
+
+* **Active Storage**: Se considera almacenamiento activo a todo dato que se haya creado o modificado en los últimos 90 días.
+
+* **Long Term Storage**: Estos datos tienen un costo menor ya que engloba a todos los datos que se encuentran almacenados pero no se han consumido o consultado dentro de los últimos 90 días.
+
+### Costos de Consultas
+
+* **On Demand**: Es la forma standrad de cobro,efectuada por cada consulta realizada y se basa en la cantidad de datos involucrados en el procesamiento de la query. Este es el tipo de cobro asociado a la capa gratuita y en base al que veremos más adelante como usar Bigquery de forma optima para no elevar estos costos innecesariamente.
+
+* **Flat Rate**: Esta modalida permite tener una tarifa plana por el uso de Bigquery que va desde los **USD 40.000** en adelante: Acorde al plan de tarifa plana seleccionado es la cantidad de recursos (workers) que se fijan como límite para realizar las consultas.
+
+## Performance y Optimización en el uso para reducir los costos
+
+Son muchas las consideraciones que podemos tener para optimizar el costo de Bigquery por eso te dejo un [articulo hermoso aquí!!!](https://medium.com/google-cloud/bigquery-optimized-cluster-your-tables-65e2f684594b), las [buenas prácticas oficiales acá](https://cloud.google.com/bigquery/docs/best-practices-performance-compute) y una serie de tips maravillosos.
+
+## Tips
+
+### Tips de costos
+
+* Al insertar una columna se considera un tamaño mínimo de **1 KB** insertado, ojo con la suma.
+
+* Los datos insertados desde **Google Cloud Storage** no se cobran.
+
+* Copiar los datos a otra tabla no tiene coston ni de lectura ni de inserción, pero si se cobra el almacenamiento de los nuevos datos.
+
+* Lo anterior puede ser muy útil en Bigquery Sandbox y su limitación de 60 días y si lo combinas con [Schedule Queries](https://cloud.google.com/bigquery/docs/scheduling-queries) es un golazo.
+
+* Exportar datos no tiene costo.
+
+* Se cobra por todos los datos procesados a pesar de usar **LIMIT**.
+
+### Tips de Performance
+
+* Trata de no transformar datos con la query
+
+* Clusteriza tus Tablas
+
+* Trata de buscar campos relevante para la clusterizacion, Fechas o grupos grandes.
+
+* En la queries respeta el orden de los clusters.
+
+* Aplica los filtros antes de Ordenar así el ordenamiento se hace sobre menos data.
+
+* Normaliza las tablas y usa correctamente los **JOINS**
+
+* Usa **GROUP BY** en base a los campos clusterizados.
+
+## Performace y Optimizacion
+
+Acompáñame a ver algunas herramientas y buenas prácticas que nos ayudarán a optimizar nuestras consultas y así sacar el máximo provecho a la capa gratuita.
+
+| *Ojo, estos tips sirven mucho incluso si usas Bigquery mas allá de la capa gratuita*.
+
+* [**Plan de Ejecución](https://cloud.google.com/bigquery/query-plan-explanation)**: Es un análisis realizado por Bigquery sobre la consulta que se va a realizar, este muestra un reporte indicando múltiples aspectos tales como,uso de computo, uso de memoria, y recursos de I/O. Utilizar esta herramienta para comprender que operaciones son mas costosas dentro de nuestras consultas nos puede ayudar a encontrar puntos de mejora que redunden en ahorro de dinero. Esta herramienta es todo un mundo en si misma, te dejo el [link a la documentación](https://cloud.google.com/bigquery/query-plan-explanation) y disfrútala.
+
+* [**Funciones de Agregación Aproximadas](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions)**: Es una serie de funciones pensada en analítica de grandes volúmenes de datos y destinada a consultas que no requieren un resultado tan fino. Esto quiere decir que funciones como **COUNT_DISTINC** y **APPROX_COUNT_DISTINCT** cumplen la misma labor pero el resultado es menos certero en el caso del comando de tipo APPROX. Sin embargo estos tipos de funciones consumen mucho menos recursos por ende son mas económicas que sus homologas mas detallistas. Estas son las que se encuentran disponibles y [aquí esta la documentación](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions).
+> # *APPROX_COUNT_DISTINCT*
+> # *APPROX_QUANTILES*
+> # *APPROX_TOP_COUNT*
+> # *APPROX_TOP_SUM*
+
+* [Partición de Tablas](https://cloud.google.com/bigquery/docs/partitioned-tables): Al crear una tabla en Bigquery es posible establecer un punto de partición para dicha tabla (Pseudo columna), de esta forma se crea una especie de paginación basada en una columna de tipo fecha. Esto quiere decir que tendremos múltiples pedazos de la misma tabla agrupada ya sea por la misma fecha o por la misma hora, esto permite optimizar mucho la performance y los costos ya que si incluimos este campo en el **WHERE** se estará consultando sobre un conjunto acotado de datos y no sobre la totalidad. Estas son los Pseudo Columnas disponibles y [aquí esta la documentación](https://cloud.google.com/bigquery/docs/partitioned-tables)
+> # [PARTITIONDATE](https://cloud.google.com/bigquery/docs/querying-partitioned-tables?hl=es#ingestion?time_partitioned_table_pseudo_columns)
+> # [PARTITIONTIME](https://cloud.google.com/bigquery/docs/querying-partitioned-tables?hl=es#ingestion?time_partitioned_table_pseudo_columns)
+
+| Ojo, algunas queries podrían leer todas las particiones según la forma en la que se realice la consulta, investiga [aquí](https://cloud.google.com/bigquery/docs/querying-partitioned-tables#pseudo_column_queries_that_scan_all_partitions)
+
+* [**require_partition_filter](https://cloud.google.com/bigquery/docs/reference/bq-cli-reference)**: Esta configuración asociada a una tabla obliga a que se indiquen los campos de clusterización en el **WHERE** de la query. Esto lo puedes activar con --***require_partition_filter=true*** en la creación de la tabla.
+
+Estoy seguro de que le vas a sacar el jugo a estos consejos y más aun le vas a sacar el máximo provecho a la capa gratuita de Google Cloud.
+
+Nos vemos en el próximo articulo…
