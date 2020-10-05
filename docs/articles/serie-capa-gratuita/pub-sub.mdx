@@ -1,0 +1,76 @@
+---
+id: "entendiendo-la-capa-gratuita-de-gcp-pub-sub"
+title: "Cloud Pub/Sub"
+description: "Serie de artículos que te ayudará a sacar el máximo provecho a Google Cloud sin pagar de más , ahora veremos Cloud Pub/Sub."
+keywords:
+  - Google Cloud Platform
+  - Gcp
+  - Cloud
+  - Economy
+  - Billing
+  - Pub/Sub
+image: "./portada.jpeg"
+---
+import {Writter} from '@site/src/utils.js';
+
+<Writter 
+  Photo="https://miro.medium.com/fit/c/256/256/2*XKiHV-3_LJvO6xeiGKheDQ.png" 
+  Name="Felipe Velasquez Castro"
+  Position="Google Developer Expert"
+/>
+
+Serie de artículos que te ayudará a sacar el máximo provecho a Google Cloud sin pagar de más , ahora veremos Cloud Pub/Sub.
+
+*Articulo principal** [**aquí](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-2d80143f70f1?source=friends_link&sk=e7c4c52c1702efb51103762f587eb5cb)*
+
+[*Julio Quinteros P.](undefined) es responsable de gran parte de este articulo :)*
+
+## Características principales
+
+Otro servicio ícono de GCP es [Cloud Pub/Sub](https://cloud.google.com/pubsub/): Este es un servicio full administrado de mensajería, fundamental para tus [*arquitecturas basadas en eventos](https://es.wikipedia.org/wiki/Arquitectura_dirigida_por_eventos)*, ya que puedes definir un *tópico* y asociados a este, tener tanto *publicadores de mensajes*, como *suscriptores* interesados en los mensajes de dicho tópico.
+
+Pub/Sub al ser full administrado por Google escala según la necesidad de forma automática, y tiene una muy alta performance.
+
+Puedes conectarlo de forma nativa a múltiples productos de GCP entre los más significativos para nuestros escasos recursos son Cloud Functions y las alertas de Billing (que veremos en otro articulo).
+
+![](https://cdn-images-1.medium.com/max/2000/0*QEAOy-pa251rkYtZ.png)
+
+*(opciones de productos a conectar… ¿reconoces los íconos de los productos?)*
+
+Sin lugar a dudas querrás tener tópicos de Pub/Sub en tu infraestructura pero debes tener presente cuales son los umbrales considerados dentro de la capa gratuita y cuanto pagarás si te pasas.
+
+## Capa/cuota gratuita
+
+La capa gratuita de Pub/Sub contempla los **10 primeros GB gratis**, si te pasas como promedia pagarás **USD 0.90** por cada 10 GB, ahora, si te pasas de eso como referencia pagarás USD60 por cada TB extra y [entre más TB uses más barato será](https://cloud.google.com/pubsub/pricing). Esto quiere decir que tenemos ***10 GB** de transferencia* y *hasta 10.000 tópicos* que podemos utilizar gratis todos los meses, si quieres más información aquí te dejo el link a las [cuotas y límites](https://cloud.google.com/pubsub/quotas#resource_limits).
+
+## Cómo debes usarlo para no pasarte de los límites
+
+Mientras no se muevan más de **10 GB,** o no crees más de 10.000 tópicos, no deberías pagar nada. Sin embargo debes considerar como mide el tamaño mínimo de los mensajes este servicio para no tener sorpresas.
+
+## Ojo: Quota units
+
+Si vamos a la documentación *en inglés* (cosa que recomendamos ampliamente, las traducciones no siempre están al día!):
+
+*Cada solicitud o respuesta medida cuenta como “el mayor de 1 kB o el tamaño total de la solicitud o respuesta”.*
+
+*El uso de la cuota para cada solicitud o respuesta se redondea al incremento de 1 kB más cercano. Considere una solicitud de publicación con 100 mensajes de 50 bytes cada uno y una longitud de nombre de tema igual a 30 bytes. El uso de la cuota de la solicitud sería max(1, ceil (5030/1000)) = 6kB.*
+
+Puntualmente en la documentación se indica esto:
+
+*Pueden producirse desajustes de cuota cuando los mensajes publicados o recibidos son menores de 1000 bytes. Por ejemplo:*
+
+* *Si publica 10 mensajes de 500 bytes en solicitudes separadas, el uso de la cuota de su publicador será de 10,000 bytes. Esto se debe a que los mensajes de menos de 1000 bytes se redondean automáticamente al siguiente incremento de 1000 bytes.*
+
+* *Si recibe esos 10 mensajes en una sola respuesta, el uso de la cuota de suscriptor podría ser de sólo 5 kB, ya que el tamaño real de cada mensaje se combina para determinar la cuota general.*
+
+* *La inversa también es cierta. El uso de la cuota del suscriptor puede ser mayor que el uso de la cuota del publicador si publica varios mensajes en una sola solicitud de publicación o recibe los mensajes en respuestas separadas.*
+
+## Todo se debe medir
+
+Recuerda que siempre puedes monitorear el uso de recursos.
+
+Tu mejor aliado para esto es sin duda alguna [stackdriver](https://github.com/develasquez/understanding-gcp-free-tier/blob/master/seasons/S01): puedes leer más respecto al monitoreo de pubsub [en este enlace](https://cloud.google.com/pubsub/docs/monitoring). Con stackdriver recuerda que puedes no sólo visualizar dashboards interactivos, lo mejor es establecer alertas que te permitirán reaccionar a tiempo (para evitar sobreconsumos, por ejemplo). En el caso de pubsub, dispones de [varias métricas para monitorear](https://cloud.google.com/monitoring/api/metrics_gcp#gcp-pubsub).
+
+También en la Season 02 veremos un Dashboard de Sata Studio que te ayudará a saber cuanto has consumido y cuanto tendrás que pagar por ellos a fin de mes.
+
+Nos vemos en el próximo articulo.

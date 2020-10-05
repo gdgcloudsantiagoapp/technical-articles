@@ -11,7 +11,7 @@ module.exports = {
     googleAnalytics: {
       trackingID: 'UA-179564597-1',
     },
-    sidebarCollapsible: false,
+    sidebarCollapsible: true,
     navbar: {
       title: 'GDG Cloud Santiago',
       logo: {

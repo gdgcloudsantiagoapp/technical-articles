@@ -44,3 +44,8 @@
 .writter p, .writter h2, .writter h4 {
   margin: 0;
 }
+
+.menu {
+  font-weight: 300;
+  font-size: 14px;
+}
