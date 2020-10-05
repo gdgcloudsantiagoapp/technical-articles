@@ -46,6 +46,11 @@
 }
 
 .menu {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
+}
+
+.menu__link--sublist:after {
+  height: 1rem;
+  width: 0.7rem;
 }
