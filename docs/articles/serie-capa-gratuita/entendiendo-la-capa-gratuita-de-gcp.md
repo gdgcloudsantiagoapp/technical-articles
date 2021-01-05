@@ -25,25 +25,25 @@ Serie de artículos que te ayudará a sacar el máximo provecho a Google Cloud s
 
 ## Indice
 
-[***Introducción — Qué es y cómo funciona la capa gratuita](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-2d80143f70f1?source=friends_link&sk=e7c4c52c1702efb51103762f587eb5cb)***
+[Introducción — Qué es y cómo funciona la capa gratuita](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-2d80143f70f1?source=friends_link&sk=e7c4c52c1702efb51103762f587eb5cb)
 
 ***S01 — Productos, Características y cómo ahorrar en la facturación***
 
-* [*Cloud Functions](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-functions-1644864529ec?sk=dcdb7b0befd0aa5d381d361d3679201f)*
+* [Cloud Functions](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-functions-1644864529ec?sk=dcdb7b0befd0aa5d381d361d3679201f)
 
-* [*Cloud Pub/Sub](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-pub-sub-e46736a56eec)*
+* [Cloud Pub/Sub](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-pub-sub-e46736a56eec)
 
-* [*Cloud Storage](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-storage-f7a806b2932f)*
+* [Cloud Storage](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-storage-f7a806b2932f)
 
-* [*Big Query](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-bigquery-71c3c661e3c4)*
+* [Big Query](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-bigquery-71c3c661e3c4)
 
-* [*Cloud Run](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-run-55021a30563f)*
+* [Cloud Run](https://medium.com/@felipe.velasquezc/entendiendo-la-capa-gratuita-de-gcp-cloud-run-55021a30563f)
 
 ***S02 —[Vigila el uso de la capa gratuita desde Data Studio](https://medium.com/@felipe.velasquezc/vigila-el-uso-de-la-capa-gratuita-desde-data-studio-927ef14fd6b9)***
 
-* [*Habilitar la exportación de Billing (en BigQuery!)](https://medium.com/@felipe.velasquezc/vigila-el-uso-de-la-capa-gratuita-desde-data-studio-927ef14fd6b9)*
+* [Habilitar la exportación de Billing (en BigQuery!)](https://medium.com/@felipe.velasquezc/vigila-el-uso-de-la-capa-gratuita-desde-data-studio-927ef14fd6b9)
 
-* [*Dashboard en Data Studio (… para una facturación sin sorpresas!)](https://medium.com/@felipe.velasquezc/vigila-el-uso-de-la-capa-gratuita-desde-data-studio-927ef14fd6b9)*
+* [Dashboard en Data Studio (… para una facturación sin sorpresas!)](https://medium.com/@felipe.velasquezc/vigila-el-uso-de-la-capa-gratuita-desde-data-studio-927ef14fd6b9)
 
 ## Introducción — Qué es y cómo funciona la capa gratuita de GCP
 
